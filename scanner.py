@@ -12,15 +12,15 @@ while True:
    
 # ARP packet
 arp = ARP(pdst=target_ip)
-ether = Ether(dst="ff:ff:ff:ff:ff:ff")
-packet = ether / arp
-result = srp(packet, timeout=5)[0]
+ethern = Ether(dst="ff:ff:ff:ff:ff:ff")
+packet = ethern / arp
+result = srp(packet, timeout=5, verbose=0)[0]
 clients = []
 
 for sent, received in result:
             clients.append({"ip": received.psrc, "mac": received.hwsrc})
         # print clients
 print("Available devices on the network:")
-print("IP" + "MAC")
+print("IP" + " "*18+"MAC")
 for client in clients:
             print("{:16}     {}".format(client["ip"], client["mac"]))
